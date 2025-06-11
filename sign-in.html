@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="website xem phim, moviezone, movie zone">
+    <meta name="description" content="website xem phim hd">
+    <meta name="author" content="Ngọc Tiến">
+    <title>Xem Phim Online</title>
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- add JS -->
+    <script src="./assets/js/common.js"></script>
+    <script src="./data/movie.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./assets/styles/css/style.css">
+</head>
+
+<body style="background: #222438;">
+    <!-- Navbar -->
+    <script>addNavbar();</script>
+    <!-- Navbar end-->
+
+    <!-- Header -->
+    <header class="main-header mt-0">
+        <!-- Navbar header -->
+        <script>addNavbarHeader();</script>
+
+        <!-- Note -->
+        <script>addNote();</script>
+    </header>
+    <!-- Header end -->
+
+    <!-- Main -->
+    <main class="background container sign-in">
+        <div class="content row">
+            <div class="col-lg-4 m-md-auto sign-in-box">
+                <div class="sign-in-header">
+                    <h2>Đăng Ký</h2>
+                    <p>Tạo tài khoản mới để bắt đầu trải nghiệm</p>
+                </div>
+                <div class="sign-in-form">
+                    <form class="form" id="form-sign-in" action="/sign-in" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="fullname" name="fullname" placeholder="Họ và tên của bạn" required
+                                autofocus>
+                            <div class="form-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email của bạn" required>
+                            <div class="form-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" placeholder="Mật khẩu của bạn"
+                                required>
+                            <div class="form-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="confirm_password" name="confirm_password"
+                                placeholder="Xác nhận mật khẩu" required>
+                            <div class="form-message"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    Tôi đồng ý với <a href="policy.html">điều khoản và chính sách</a>.
+                                </label>
+                                <div class="form-message"></div>
+                            </div>
+                        </div>
+                        <button type="submit">Đăng Ký</button>
+                    </form>
+                </div>
+                <div class="sign-in-footer">
+                    <a href="/sign-up.html">Đã có tài khoản? Đăng nhập ngay</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Main end -->
+
+    <!-- Footer -->
+    <footer>
+        <script>addFooter();</script>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- Bootstrap JS -->
+    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script src="./assets/js/index.js" defer></script>
+    <script src="./assets/js/value.js" defer></script>
+
+    <!-- Custom JS -->
+    <script src="./assets/js/validator.js"></script>
+    <script>
+        Validator({
+            form: '#form-sign-in',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#fullname', 'Vui lòng nhập họ và tên của bạn.'),
+                Validator.isRequired('#email', 'Vui lòng nhập email của bạn.'),
+                Validator.isEmail('#email', 'Email không hợp lệ.'),
+                Validator.isRequired('#password', 'Vui lòng nhập mật khẩu của bạn.'),
+                Validator.minLength('#password', 6, 'Mật khẩu phải chứa ít nhất 6 ký tự.'),
+                Validator.isRequired('#confirm_password', 'Vui lòng xác nhận mật khẩu của bạn.'),
+                Validator.isConfirmed('#confirm_password', function () {
+                    return document.querySelector('#form-sign-in #password').value;
+                }, 'Mật khẩu không khớp.'),
+                Validator.isRequired('#terms', 'Vui lòng đồng ý với điều khoản và chính sách.')
+            ],
+            submitHandler: function (data) {
+                register(data)
+                    .then(function (users) {
+                        alert("Register successfully!");
+                        console.log(users);
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
