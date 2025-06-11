@@ -17,7 +17,7 @@ Dự án này là một website được xây dựng bằng các công nghệ Fr
 
 1. **Clone dự án**:
     ```bash
-    git clone https://github.com/ngoctien2610/DevSkillz.git
+    git clone https://github.com/ngoctien2610/cineflix.git
     ```
     
 2. **Chạy dự án**:
